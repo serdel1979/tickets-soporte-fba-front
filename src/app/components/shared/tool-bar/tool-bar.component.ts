@@ -9,7 +9,8 @@ export class ToolBarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  title = 'angularbootstrap';
+   ngOnInit() {
   }
 
 }

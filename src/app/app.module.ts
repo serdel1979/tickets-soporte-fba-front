@@ -8,6 +8,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ToolBarComponent } from './components/shared/tool-bar/tool-bar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RutasRoutingModule } from './rutas/rutas-routing.module';
+import { ToolBarUserComponent } from './components/shared/tool-bar-user/tool-bar-user.component';
+
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { RutasRoutingModule } from './rutas/rutas-routing.module';
     HomeUserComponent,
     AboutComponent,
     ToolBarComponent,
-    LoginComponent
+    LoginComponent,
+    ToolBarUserComponent
   ],
   imports: [
     BrowserModule,
+    
     RutasRoutingModule
   ],
   providers: [],
