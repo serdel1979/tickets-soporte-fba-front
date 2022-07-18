@@ -1,12 +1,12 @@
 <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link" routerLink="/admin" *ngIf="isAdmin">Solicitudes</a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link" routerLink="/home">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" routerLink="/users">Users</a>
+    <a class="nav-link" routerLink="/admin" *ngIf="isAdmin">Solicitudes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/users" *ngIf="isAdmin">Users</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" routerLink="/about">Info</a>
