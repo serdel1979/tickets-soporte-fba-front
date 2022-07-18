@@ -8,11 +8,11 @@ import { AboutComponent } from './components/about/about.component';
 import { ToolBarComponent } from './components/shared/tool-bar/tool-bar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RutasRoutingModule } from './rutas/rutas-routing.module';
-import { ToolBarUserComponent } from './components/shared/tool-bar-user/tool-bar-user.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './components/users/users.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 @NgModule({
@@ -23,7 +23,6 @@ import { UsersComponent } from './components/users/users.component';
     AboutComponent,
     ToolBarComponent,
     LoginComponent,
-    ToolBarUserComponent,
     UsersComponent
     
   ],
@@ -31,7 +30,8 @@ import { UsersComponent } from './components/users/users.component';
     BrowserModule,
     ReactiveFormsModule,
     RutasRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
