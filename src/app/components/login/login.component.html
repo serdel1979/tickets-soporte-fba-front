@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row text-center login-page">
         <div class="col-md-12 login-form">
-            <form action="" method="post">
+            <form [formGroup]="form" (submit)="send()" method="post">
                 <div class="row" style="margin-top: 20px">
                     <div class="col-md-12 login-form-header">
                         <p class="login-form-font-header">Ingre<span>sar</span>
@@ -10,17 +10,17 @@
                 </div>
                 <div class="row" style="margin-top: 5px">
                     <div class="col-md-12 login-from-row">
-                        <input name="usuario" type="text" placeholder="Dpto/Secretaría" required />
+                        <input formControlName="user" name="user" type="text" placeholder="Dpto/Secretaría" required />
                     </div>
                 </div>
                 <div class="row" style="margin-top: 5px">
                     <div class="col-md-12 login-from-row">
-                        <input name="password" type="password" placeholder="Contraseña" required />
+                        <input formControlName="password" name="password" type="password" placeholder="Contraseña" required />
                     </div>
                 </div>
                 <div class="row" style="margin-top: 5px">
                     <div class="col-md-12 login-from-row">
-                        <button class="btn btn-info">Entrar</button>
+                        <button class="btn btn-info">Iniciar</button>
                     </div>
                 </div>
             </form>

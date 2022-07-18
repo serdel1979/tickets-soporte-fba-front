@@ -9,6 +9,10 @@ import { ToolBarComponent } from './components/shared/tool-bar/tool-bar.componen
 import { LoginComponent } from './components/login/login.component';
 import { RutasRoutingModule } from './rutas/rutas-routing.module';
 import { ToolBarUserComponent } from './components/shared/tool-bar-user/tool-bar-user.component';
+import { CookieService } from 'ngx-cookie-service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './components/users/users.component';
 
 
 @NgModule({
@@ -19,14 +23,17 @@ import { ToolBarUserComponent } from './components/shared/tool-bar-user/tool-bar
     AboutComponent,
     ToolBarComponent,
     LoginComponent,
-    ToolBarUserComponent
+    ToolBarUserComponent,
+    UsersComponent
+    
   ],
   imports: [
     BrowserModule,
-    
-    RutasRoutingModule
+    ReactiveFormsModule,
+    RutasRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
