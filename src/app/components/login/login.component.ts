@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private loginService: LoginService,
-    private cookie: CookieService,
     private router: Router,
     private route: ActivatedRoute,) {
 
@@ -38,7 +37,7 @@ export class LoginComponent implements OnInit {
       user: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
 
@@ -54,8 +53,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.form.value)
       .pipe(first())
       .subscribe(
-        (data:any) => {
-          this.cookie.set('cookie-name', data.token);
+        () => {
           this.router.navigate([this.returnUrl]);
         },
         (error: string) => {

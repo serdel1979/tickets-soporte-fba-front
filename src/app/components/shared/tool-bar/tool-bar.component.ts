@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/interface/user.interface';
 import { LoginService } from '../../../services/login.service';
 
@@ -12,16 +13,22 @@ export class ToolBarComponent implements OnInit {
 
 
   user!: User;
-  constructor(private loginService: LoginService, private router: Router,) { }
+  constructor(private loginService: LoginService, private router: Router) {
+    this.loginService.user.subscribe(x => this.user = x);
+  }
 
   title = 'Incidentes';
   ngOnInit() {
+    //this.user = this.loginService.getUser();
   }
 
   get isAdmin() {
-    for (let rol of this.user.roles) {
-      console.log("rol ->", rol);
-      if (rol === "admin") return true;
+    let { user } = this.user;
+    const usr = JSON.parse(JSON.stringify(user)); //convierto string a objeto
+    for (let rol of usr.roles) {
+      if (rol.Role === "admin") {
+        return true;
+      }
     }
     return false;
   }
