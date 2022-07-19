@@ -6,6 +6,7 @@ import { User } from 'src/app/interface/user.interface';
 import { NgxRolesService } from 'ngx-permissions';
 import { BehaviorSubject, first, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
         },
         (error: string) => {
           this.error = error;
+          alert(this.error);
           this.loading = false;
         });
   }
