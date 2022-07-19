@@ -5,15 +5,32 @@ import { HomeAdminComponent } from '../components/home-admin/home-admin.componen
 import { HomeUserComponent } from '../components/home-user/home-user.component';
 import { LoginComponent } from '../components/login/login.component';
 import { UsersComponent } from '../components/users/users.component';
-import { UserGuardGuard } from '../user-guard.guard';
+import { LoginGuard } from '../middleware/user-guard.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},  
-  { path: 'admin', component: HomeAdminComponent, canActivate : [UserGuardGuard]}, 
-  { path: 'users', component: UsersComponent, canActivate : [UserGuardGuard]},
-  { path: 'home', component: HomeUserComponent, canActivate : [UserGuardGuard]}, 
-  { path: 'about', component: AboutComponent, canActivate : [UserGuardGuard] },
-  { path: '', pathMatch: 'full', redirectTo: 'login' }, 
+  { path: 'login', 
+    component: LoginComponent
+  },  
+  { path: 'admin', 
+    component: HomeAdminComponent, 
+    canActivate : [LoginGuard]
+  }, 
+  { path: 'users', 
+    component: UsersComponent, 
+    canActivate : [LoginGuard]
+  },
+  { path: 'home', 
+    component: HomeUserComponent, 
+    canActivate : [LoginGuard]
+  }, 
+  { path: 'about', 
+    component: AboutComponent, 
+    canActivate : [LoginGuard] 
+  },
+  { path: '',
+    pathMatch: 'full', 
+    redirectTo: 'login' 
+  }, 
 ];
 
 @NgModule({
