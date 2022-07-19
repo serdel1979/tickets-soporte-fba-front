@@ -1,28 +1,28 @@
-<div class="container">
-    <div class="row text-center login-page">
-        <div class="col-md-12 login-form">
+<div class="col-md-6 offset-md-3 mt-5">
+
+    <div class="card">
+        <h4 class="card-header">Ingreso al sistema de tickets</h4>
+        <div class="card-body">
             <form [formGroup]="form" (submit)="login()" method="post">
-                <div class="row" style="margin-top: 20px">
-                    <div class="col-md-12 login-form-header">
-                        <p class="login-form-font-header">Ingre<span>sar</span>
-                        <p>
+                <div class="form-group"  style="margin-top: 10px;">
+                    <label for="user">Usuario</label>
+                    <input type="text" formControlName="user" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Ingrese usuario.
                     </div>
                 </div>
-                <div class="row" style="margin-top: 5px">
-                    <div class="col-md-12 login-from-row">
-                        <input formControlName="user" name="user" type="text" placeholder="Dpto/Secretaría" required />
+                <div class="form-group"  style="margin-top: 10px;">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" required/>
+                    <div class="invalid-feedback">
+                        Ingrese contraseña.
                     </div>
                 </div>
-                <div class="row" style="margin-top: 5px">
-                    <div class="col-md-12 login-from-row">
-                        <input formControlName="password" name="password" type="password" placeholder="Contraseña" required />
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 5px">
-                    <div class="col-md-12 login-from-row">
-                        <button class="btn btn-info">Iniciar</button>
-                    </div>
-                </div>
+                <button style="margin-top: 10px;" [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">Error en los datos</div>
             </form>
         </div>
     </div>
