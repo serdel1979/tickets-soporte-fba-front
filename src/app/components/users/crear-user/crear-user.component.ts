@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-user',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearUserComponent implements OnInit {
 
-  constructor() { }
+  public form!: FormGroup;
+  constructor(private fb: FormBuilder) { }
+
+  get f() { return this.form.controls; }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      user: ['', Validators.required],
+      password: ['', Validators.required],
+      roles: ['', Validators.required]
+    });
+  }
+
+  guardar(){
+    console.log(this.form.value);
   }
 
 }
