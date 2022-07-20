@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './components/users/users.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ErrorComponent } from './components/shared/error/error.component';
+import { CrearUserComponent } from './components/users/crear-user/crear-user.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ErrorComponent } from './components/shared/error/error.component';
     ToolBarComponent,
     LoginComponent,
     UsersComponent,
-    ErrorComponent
+    ErrorComponent,
+    CrearUserComponent
     
   ],
   imports: [

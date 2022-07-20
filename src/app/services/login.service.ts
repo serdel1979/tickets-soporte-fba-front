@@ -11,6 +11,7 @@ export class LoginService {
 
   private userSubject!: BehaviorSubject<User>;
   public user!: Observable<User>;
+  private nombreUser!: any;
   constructor(private http: HttpClient,
     private cookie: CookieService) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || "[]"));
@@ -27,12 +28,14 @@ export class LoginService {
       localStorage.setItem('user', JSON.stringify(user));
       this.cookie.set('cookie-name', user.token);
       this.userSubject.next(user);
+      this.nombreUser = user;
       return user;
   }));
   }
 
   getUser(){
-    return this.user;
+    const { user } = this.nombreUser;
+    return user.user;
   }
 
   logout() {

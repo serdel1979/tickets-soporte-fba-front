@@ -13,13 +13,19 @@ export class ToolBarComponent implements OnInit {
 
 
   user!: User;
+  usr!:string;
+
+  public nombreUsuario!: any;
+
   constructor(private loginService: LoginService, private router: Router) {
-    this.loginService.user.subscribe(x => this.user = x);
+
   }
 
   title = 'Incidentes';
   ngOnInit() {
-    //this.user = this.loginService.getUser();
+    const { user } = JSON.parse(localStorage.getItem('user') || "[]");
+    this.usr = user.user;
+    this.loginService.user.subscribe(x => this.user = x);
   }
 
   get isAdmin() {
