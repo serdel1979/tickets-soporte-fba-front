@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsuariosService } from '../../../services/usuarios.service'
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, first, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-crear-user',

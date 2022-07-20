@@ -10,11 +10,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RutasRoutingModule } from './routes/rutas-routing.module';
 import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersComponent } from './components/users/users.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ErrorComponent } from './components/shared/error/error.component';
 import { CrearUserComponent } from './components/users/crear-user/crear-user.component';
+import { JwtInterceptorInterceptor } from './middleware/jwt-interceptor.interceptor';
 
 
 @NgModule({
@@ -37,7 +38,11 @@ import { CrearUserComponent } from './components/users/crear-user/crear-user.com
     HttpClientModule,
     NgxPermissionsModule.forRoot()
   ],
-  providers: [CookieService],
+  providers: [CookieService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
