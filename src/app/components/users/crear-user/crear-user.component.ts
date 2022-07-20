@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuariosService } from '../../../services/usuarios.service'
+import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject, first, Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-user',
@@ -9,7 +13,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CrearUserComponent implements OnInit {
 
   public form!: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, 
+    private usuarioService: UsuariosService,
+    private router: Router,
+    private route: ActivatedRoute,) { }
 
   get f() { return this.form.controls; }
 
@@ -22,7 +29,10 @@ export class CrearUserComponent implements OnInit {
   }
 
   guardar(){
-    console.log(this.form.value);
+    this.usuarioService.agregaUsuario(this.form.value)
+      .subscribe(data => {
+        this.router.navigate(['/users']);
+      })
   }
 
 }
