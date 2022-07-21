@@ -41,7 +41,7 @@ export class LoginService {
   logout() {
     localStorage.removeItem('user');
     this.cookie.delete('cookie-name');
-      //this.userSubject.next(null);
+    //this.userSubject.next(null);
   }
 
 }
