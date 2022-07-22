@@ -1,43 +1,35 @@
 <app-tool-bar></app-tool-bar>
 <div class="container m-5">
-    <div class="jumbotron">
-        <h3 class="display-4">Usuarios</h3>
-        <p class="lead">
-           Altas bajas y modificación de usuarios
-        </p>
-        <hr class="my-4" />
-        <p>
-            Agregar usuario...
-        </p>
-        <a class="btn btn-primary btn-lg" routerLink="crear-usuario"  role="button">Agregar</a>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+  <div class="jumbotron">
+    <p class="lead">
+      Altas bajas y modificación de usuarios
+    </p>
+    <hr class="my-4" />
+    <a class="btn btn-primary btn-lg" routerLink="crear-usuario" role="button">Agregar</a>
+    <div>
+      <table class="table">
+        <caption>
+          <code>table.table-sortable</code>
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Usuario/Departamento</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usr of usuarios | paginate: { itemsPerPage:5, currentPage: page}">
+            <td scope="row">{{ usr.user }}</td>
+            <td scope="row">
+              <p *ngFor="let rol of usr.roles"> {{ getRol(rol) }} </p>
+            </td>
+            <td scope="row"> ver editar etc</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+      </pagination-controls>
     </div>
+  </div>
 </div>

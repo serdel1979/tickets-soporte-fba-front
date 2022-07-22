@@ -9,7 +9,11 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class UsersComponent implements OnInit {
 
+  
   usuarios!:User[];
+
+  public page!: number;
+
   constructor(private usuarioService: UsuariosService) { }
 
   
@@ -20,9 +24,14 @@ export class UsersComponent implements OnInit {
   cargarDatos() {
     this.usuarioService.getAll().subscribe(data => {
         this.usuarios = data;
-        console.log(data);
     });
-    
+  }
+
+  getRol(rol:any){
+    if (rol.Role === "admin") {
+      return 'Administrador';
+    }
+    return 'Usuario';
   }
 
 }
