@@ -45,7 +45,6 @@ export class UsersComponent implements OnInit {
       if (this.filterUser == '' || this.filterUser.length == 1){
         this.cargarDatos();
       }
-      console.log(`filtro: ${this.filterUser} y encontrasos -->`, this.usuarios);
   }
 
 
