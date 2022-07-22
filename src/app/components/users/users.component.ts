@@ -9,29 +9,42 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class UsersComponent implements OnInit {
 
-  
-  usuarios!:User[];
+  filterUser: string = '';
+  usuarios!: User[];
 
   public page!: number;
 
+
   constructor(private usuarioService: UsuariosService) { }
 
-  
+
   ngOnInit(): void {
     this.cargarDatos();
   }
 
   cargarDatos() {
     this.usuarioService.getAll().subscribe(data => {
-        this.usuarios = data;
+      this.usuarios = data;
     });
   }
 
-  getRol(rol:any){
+  getRol(rol: any) {
     if (rol.Role === "admin") {
       return 'Administrador';
     }
     return 'Usuario';
   }
+
+
+  onKeypressEvent(event: any) {
+      const filtro = this.usuarios.filter(usr => {
+        return usr.user.includes(this.filterUser);
+      });
+      this.usuarios = filtro;
+      if (this.filterUser == '' || this.filterUser.length == 1){
+        this.cargarDatos();
+      }
+  }
+
 
 }

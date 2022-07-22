@@ -4,13 +4,15 @@
     <p class="lead">
       Altas bajas y modificación de usuarios
     </p>
+      <div class="form-group">
+        <input type="text" id="buscar" (keydown)="onKeypressEvent($event)"  [(ngModel)]="filterUser" class="forms-control" placeholder="Buscar.." />
+      </div>
+      
     <hr class="my-4" />
+
     <a class="btn btn-primary btn-lg" routerLink="crear-usuario" role="button">Agregar</a>
     <div>
-      <table class="table">
-        <caption>
-          <code>table.table-sortable</code>
-        </caption>
+      <table class="table" style="margin-top: 10px;">
         <thead>
           <tr>
             <th scope="col">Usuario/Departamento</th>

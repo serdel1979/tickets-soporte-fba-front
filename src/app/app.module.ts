@@ -17,7 +17,7 @@ import { ErrorComponent } from './components/shared/error/error.component';
 import { CrearUserComponent } from './components/users/crear-user/crear-user.component';
 import { JwtInterceptorInterceptor } from './middleware/jwt-interceptor.interceptor';
 import { NgxPaginationModule } from "ngx-pagination";
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     RutasRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
+    FormsModule,
     NgxPermissionsModule.forRoot()
   ],
   providers: [CookieService,{
