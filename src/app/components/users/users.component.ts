@@ -37,6 +37,7 @@ export class UsersComponent implements OnInit {
 
 
   onKeypressEvent(event: any) {
+    this.page = 1;
       const filtro = this.usuarios.filter(usr => {
         return usr.user.includes(this.filterUser);
       });
@@ -44,6 +45,7 @@ export class UsersComponent implements OnInit {
       if (this.filterUser == '' || this.filterUser.length == 1){
         this.cargarDatos();
       }
+      console.log(`filtro: ${this.filterUser} y encontrasos -->`, this.usuarios);
   }
 
 
