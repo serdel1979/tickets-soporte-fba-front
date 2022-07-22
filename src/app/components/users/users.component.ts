@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interface/user.interface';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+declare var window: any;
 
 @Component({
   selector: 'app-users',
@@ -9,6 +10,8 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class UsersComponent implements OnInit {
 
+  formModal: any;
+  usrdelet: any;
   filterUser: string = '';
   usuarios!: User[];
 
@@ -19,6 +22,9 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    );
     this.cargarDatos();
   }
 
@@ -38,14 +44,28 @@ export class UsersComponent implements OnInit {
 
   onKeypressEvent(event: any) {
     this.page = 1;
-      const filtro = this.usuarios.filter(usr => {
-        return usr.user.includes(this.filterUser);
-      });
-      this.usuarios = filtro;
-      if (this.filterUser == '' || this.filterUser.length == 1){
-        this.cargarDatos();
-      }
+    const filtro = this.usuarios.filter(usr => {
+      return usr.user.includes(this.filterUser);
+    });
+    this.usuarios = filtro;
+    if (this.filterUser == '' || this.filterUser.length == 1) {
+      this.cargarDatos();
+    }
   }
 
+  openFormModal(usr: any) {
+    this.usrdelet = usr;
+    this.formModal.show();
+  }
+  deleteUser() {
+    this.usuarioService.deleteUser(this.usrdelet._id).subscribe(data=>{
+    })
+    this.formModal.hide();
+    this.cargarDatos();
+  }
+
+  cancelDelete(){
+    this.usrdelet = null;
+  }
 
 }

@@ -18,5 +18,8 @@ export class UsuariosService {
     return this.http.get<any[]>('http://localhost:5000/users');
   }
 
+  deleteUser(id:any): Observable<any>{
+    return this.http.delete<any>(`http://localhost:5000/users/${id}`);
+  }
 
 }
