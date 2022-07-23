@@ -26,7 +26,7 @@ export class LoginService {
     return this.http.post<User>('http://localhost:5000/auth/login', user).pipe(map((user: User) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('user', JSON.stringify(user));
-      this.cookie.set('cookie-name', user.token);
+      this.cookie.set('cookie-name', user.token,0.3,'/');
       this.userSubject.next(user);
       this.nombreUser = user;
       return user;
@@ -39,8 +39,8 @@ export class LoginService {
   }
 
   logout() {
+    this.cookie.delete('cookie-name','/');
     localStorage.removeItem('user');
-    this.cookie.delete('cookie-name');
     //this.userSubject.next(null);
   }
 

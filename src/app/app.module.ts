@@ -19,6 +19,7 @@ import { JwtInterceptorInterceptor } from './middleware/jwt-interceptor.intercep
 import { NgxPaginationModule } from "ngx-pagination";
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,

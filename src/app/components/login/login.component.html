@@ -6,14 +6,14 @@
             <form [formGroup]="form" (submit)="login()" method="post">
                 <div class="form-group"  style="margin-top: 10px;">
                     <label for="user">Usuario</label>
-                    <input type="text" formControlName="user" class="form-control" required />
+                    <input type="text" formControlName="user" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.invalid }" required />
                     <div class="invalid-feedback">
                         Ingrese usuario.
                     </div>
                 </div>
                 <div class="form-group"  style="margin-top: 10px;">
                     <label for="password">Password</label>
-                    <input type="password" formControlName="password" class="form-control" required/>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.invalid }" required/>
                     <div class="invalid-feedback">
                         Ingrese contraseña.
                     </div>

@@ -26,16 +26,7 @@
                     Seleccionar un rol.
                 </div>
             </div>
-            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error al guardar</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-    
-            <div *ngIf="ok" class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Guardado</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
+ 
             <button style="margin-top:10px;" type="submit" class="btn btn-primary">Guardar</button>
             <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary" (click)="limpiar()">Crear
                 otro...</button>

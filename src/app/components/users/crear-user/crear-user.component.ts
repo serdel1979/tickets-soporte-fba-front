@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Role } from 'src/app/role/role.enum';
 import { UserAdd } from 'src/app/interface/user-add.class';
+import swal from'sweetalert2';
+
 
 @Component({
   selector: 'app-crear-user',
@@ -16,8 +18,7 @@ export class CrearUserComponent implements OnInit {
 
   public user_new!:  UserAdd;
   public form!: FormGroup;
-  ok = false;
-  error = false;
+
   submitted = false;
   formValid = true;
 
@@ -29,16 +30,17 @@ export class CrearUserComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.ok = false;
     this.formValid = true;
+    this.crearFormulario();
+  }
+
+  crearFormulario(){
     this.form = this.fb.group({
       user: ['', Validators.required],
       password: ['', Validators.required],
       role: ['', Validators.required]
     });
   }
-
-  
 
   parseRole(aString: string):any{
     if (aString === 'admin'){
@@ -48,7 +50,8 @@ export class CrearUserComponent implements OnInit {
   }
 
   limpiar(){
-    this.form.reset();
+    this.formValid = true;
+    this.crearFormulario();
   }
 
   volver(){
@@ -64,18 +67,22 @@ export class CrearUserComponent implements OnInit {
       return;
     }
 
-    this.ok = true;
+
     let user: string = this.form.value['user'];
     let pass: string = this.form.value['password'];
     let rol: Role = this.form.value['role'];
     this.user_new = new UserAdd(user,pass,this.parseRole(rol));
     this.usuarioService.agregaUsuario(this.user_new)
       .subscribe(data => {
-        this.error = false;
-        this.ok = true;
+        swal.fire('Ok','Usuario agregado','success');
     },(err: any) => {
-      this.error = true;
-      this.ok = false;
+
+      const { code } = err.error.error;
+      if (code == 11000){
+          swal.fire('Error','El usuario ya existe','error');}
+      else{
+        swal.fire('Error','Error inesperado','error');
+      }
   });
   }
 

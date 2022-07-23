@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interface/user.interface';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import swal from'sweetalert2';
 declare var window: any;
 
 @Component({
@@ -58,8 +59,10 @@ export class UsersComponent implements OnInit {
     this.formModal.show();
   }
   deleteUser() {
-    this.usuarioService.deleteUser(this.usrdelet._id).subscribe(data=>{
-    })
+    this.usuarioService.deleteUser(this.usrdelet._id).subscribe(data=>{},
+      err => {
+        swal.fire('error',`${err.error.error}`,'error');
+      });
     this.formModal.hide();
     this.cargarDatos();
   }
