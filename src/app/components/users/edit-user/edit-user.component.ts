@@ -14,9 +14,9 @@ import { User } from 'src/app/interface/user.interface';
 })
 export class EditUserComponent implements OnInit {
   public form!: FormGroup;
-  public user_edit!: UserEdit;
   submitted = false;
   formValid = true;
+  isadmin!:boolean;
   user!: User;
   id!: string;
   constructor(private fb: FormBuilder,
@@ -26,19 +26,21 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.usuarioService.getUser(this.id).subscribe(data => {
+      this.user = data;
+      this.isadmin = this.isAdmin();
+      this.form.controls['user'].setValue(this.user['user']);
+      this.form.controls['roleadmin'].setValue(this.isadmin);
+      console.log(this.form.value['roleadmin']);
+    })
     this.form = this.fb.group({
       user: [''],
       reset: [''],
       password: [''],
       roleadmin: [''],
-      roleuser: [''],
     });
 
-    this.usuarioService.getUser(this.id).subscribe(data => {
-      this.user = data;
-      this.form.controls['user'].setValue(this.user['user']);
-      console.log(this.form);
-    })
+    
 
   }
 
@@ -69,22 +71,12 @@ export class EditUserComponent implements OnInit {
   guardar() {
     this.submitted = true;
     this.formValid = true;
-    // stop here if form is invalid
     if (this.form.invalid) {
       this.formValid = false;
       return;
     }
-
-    let user: string = this.form.value['user'];
-    let pass: string = this.form.value['password'];
-    let roladmin: Role = this.form.value['roleadmin'];
-    let roleuser: Role = this.form.value['roleuser'];
-    this.user_edit = new UserEdit(user, pass, this.parseRole(roleuser));
-    console.log("usuario a guardar ",this.user_edit);
-    if (roladmin) {
-      console.log(roladmin);
-    }
-    this.usuarioService.editUser(this.id,this.user_edit)
+    const usrnuevo = this.usuarioEditado(this.form.value);
+    this.usuarioService.editUser(this.id,usrnuevo)
       .subscribe(data => {
         swal.fire('Ok', 'Usuario modificado', 'success');
       }, (err: any) => {
@@ -98,4 +90,30 @@ export class EditUserComponent implements OnInit {
         }
       });
   }
+
+
+
+  usuarioEditado(form: any):any{
+    let roladmin = this.form.value['roleadmin'];
+    console.log(typeof roladmin);
+    let roles: Array<any>=[]
+    roles.push({"Role":"user"})
+    if (roladmin){
+      roles.push({"Role":"admin"})
+    } 
+    //tengo los roles
+    let user = this.form.value['user'];
+    let password = this.form.value['password'];
+    if (user && password){
+      return {user : user, password:password, roles: roles};
+    }
+    if (user && !password){
+      return {user : user, roles: roles};
+    }
+    if (!user && password){
+      return {password : password, roles: roles};
+    }
+  }
+
+
 }

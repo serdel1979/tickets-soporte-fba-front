@@ -27,8 +27,8 @@ export class UsuariosService {
     return this.http.get<any>(`http://localhost:5000/users/${id}`);
   }
 
-  editUser(id:any, user: UserEdit): Observable<any>{
-    return this.http.put<any>(`http://localhost:5000/users/${id}`, user);
+  editUser(id:any, user: any): Observable<any>{
+    return this.http.patch<any>(`http://localhost:5000/users/${id}`, user);
   }
 
 }

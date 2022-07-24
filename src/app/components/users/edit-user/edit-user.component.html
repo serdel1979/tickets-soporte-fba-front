@@ -26,16 +26,20 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="rol" class="form-label">Seleccionar tipo de usuario</label>
-                <div *ngIf="isAdmin()" class="form-control">
-                    <input class="form-check-input" type="checkbox" value="" id="admin" checked />
-                    <label class="form-check-label" for="flexCheckDefault">Administrador</label>
-                </div>
-                <div *ngIf="!isAdmin()" class="form-control">
-                    <input class="form-check-input" type="checkbox" value="" id="admin"/>
-                    <label class="form-check-label" for="flexCheckDefault">Administrador</label>
+                <div *ngIf="this.isadmin">
+                    <div class="form-control">
+                        <input formControlName="roleadmin" class="form-check-input" type="checkbox" name="admin1" id="admin" checked/>
+                        <label class="form-check-label" for="flexCheckChecked">Administrador</label>
+                    </div>
                 </div>
 
-                <!-- Checked checkbox -->
+                <div *ngIf="!this.isadmin">
+                    <div class="form-control">
+                        <input formControlName="roleadmin" class="form-check-input" type="checkbox" name="admin2" id="admin2" />
+                        <label class="form-check-label" for="flexCheckChecked">Administrador</label>
+                    </div>
+                </div>
+                
                 <div class="form-control">
                     <input disabled class="form-check-input" type="checkbox" value="" id="userRol" checked />
                     <label class="form-check-label" for="flexCheckChecked">Usuario</label>
