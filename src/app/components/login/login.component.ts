@@ -7,6 +7,7 @@ import { NgxRolesService } from 'ngx-permissions';
 import { BehaviorSubject, first, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Role } from '../../role/role.enum';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl!: string;
   error = '';
+  user!: any;
 
   constructor(private fb: FormBuilder,
     private loginService: LoginService,
@@ -54,13 +56,34 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.form.value)
       .pipe(first())
       .subscribe(
-        () => {
-          this.router.navigate([this.returnUrl]);
+        (data:any) => {
+          this.user = data;
+          if (this.isAdmin()){
+            this.router.navigate(['/admin']);
+          }else{
+            this.router.navigate(['/home']);
+          }
+        //  this.router.navigate([this.returnUrl]);
         },(error: string) => {
           this.error = error;
           this.loading = false;
       });
   }
+
+
+  isAdmin(): boolean {
+    for (let rol of this.user.user.roles) {
+      const keys = Object.keys;
+      for (const r of keys(rol)) {
+        const roleAsKey = r as keyof typeof rol;
+        if (rol[roleAsKey] == 'admin') {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
 
 }
 
