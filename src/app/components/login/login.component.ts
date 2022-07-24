@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
           }
         //  this.router.navigate([this.returnUrl]);
         },(err: any) => {
-          console.log(err);
           if(err.status == 403){
             this.error = err.error['error'];
           }else{
