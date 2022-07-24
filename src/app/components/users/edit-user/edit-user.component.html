@@ -23,7 +23,7 @@
                             <label for="password" class="form-label">Contraseña</label>
                             <div class="form-group">
                                 <input formControlName="password" [type]="show ? 'text' : 'password'"
-                                    class="form-control" id="password"
+                                    class="form-control" id="password" maxlength="20"
                                     [ngClass]="{ 'is-invalid': submitted && form.invalid }" required>
                                 <a style="cursor:pointer;" (click)="password()" role="button" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

@@ -32,7 +32,6 @@ export class EditUserComponent implements OnInit {
       this.isadmin = this.isAdmin();
       this.form.controls['user'].setValue(this.user['user']);
       this.form.controls['roleadmin'].setValue(this.isadmin);
-      console.log(this.form.value['roleadmin']);
     })
     this.form = this.fb.group({
       user: [''],

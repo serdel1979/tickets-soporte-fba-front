@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
           if(err.status == 403){
             this.error = err.error['error'];
           }else{
-            this.error = "Revisar longitud de los campos"
+            this.error = "Error en los datos"
           }
         
           this.loading = false;
