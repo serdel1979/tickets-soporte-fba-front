@@ -5,6 +5,7 @@ import { HomeAdminComponent } from '../components/home-admin/home-admin.componen
 import { HomeUserComponent } from '../components/home-user/home-user.component';
 import { LoginComponent } from '../components/login/login.component';
 import { CrearUserComponent } from '../components/users/crear-user/crear-user.component';
+import { EditUserComponent } from '../components/users/edit-user/edit-user.component';
 import { UsersComponent } from '../components/users/users.component';
 import { LoginGuard } from '../middleware/login-guard.guard';
 import { RolesGuard } from '../middleware/roles.guard';
@@ -23,6 +24,10 @@ const routes: Routes = [
   },
   { path: 'users/crear-usuario', 
     component: CrearUserComponent, 
+    canActivate : [LoginGuard,RolesGuard]
+  },
+  { path: 'users/editar-usuario/:id', 
+    component: EditUserComponent, 
     canActivate : [LoginGuard,RolesGuard]
   },
   { path: 'home', 

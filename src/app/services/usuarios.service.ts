@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, first, Observable } from 'rxjs';
+import { UserEdit } from '../interface/user-edit';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,14 @@ export class UsuariosService {
 
   deleteUser(id:any): Observable<any>{
     return this.http.delete<any>(`http://localhost:5000/users/${id}`);
+  }
+
+  getUser(id:any): Observable<any>{
+    return this.http.get<any>(`http://localhost:5000/users/${id}`);
+  }
+
+  editUser(id:any, user: UserEdit): Observable<any>{
+    return this.http.put<any>(`http://localhost:5000/users/${id}`, user);
   }
 
 }

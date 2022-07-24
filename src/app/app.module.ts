@@ -18,6 +18,7 @@ import { CrearUserComponent } from './components/users/crear-user/crear-user.com
 import { JwtInterceptorInterceptor } from './middleware/jwt-interceptor.interceptor';
 import { NgxPaginationModule } from "ngx-pagination";
 import { FormsModule } from '@angular/forms';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     UsersComponent,
     ErrorComponent,
-    CrearUserComponent
+    CrearUserComponent,
+    EditUserComponent
     
   ],
   imports: [

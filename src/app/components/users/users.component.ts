@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interface/user.interface';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import swal from'sweetalert2';
@@ -19,7 +20,7 @@ export class UsersComponent implements OnInit {
   public page!: number;
 
 
-  constructor(private usuarioService: UsuariosService) { }
+  constructor(private usuarioService: UsuariosService, private router: Router,) { }
 
 
   ngOnInit(): void {
@@ -58,6 +59,11 @@ export class UsersComponent implements OnInit {
     this.usrdelet = usr;
     this.formModal.show();
   }
+
+  editar(usr: any) {
+    this.router.navigate([`/users/editar-usuario/${usr._id}`]);
+  }
+
   deleteUser() {
     this.usuarioService.deleteUser(this.usrdelet._id).subscribe(data=>{},
       err => {
