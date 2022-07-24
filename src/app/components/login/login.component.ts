@@ -64,8 +64,14 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
           }
         //  this.router.navigate([this.returnUrl]);
-        },(error: string) => {
-          this.error = error;
+        },(err: any) => {
+          console.log(err);
+          if(err.status == 403){
+            this.error = err.error['error'];
+          }else{
+            this.error = "Revisar longitud de los campos"
+          }
+        
           this.loading = false;
       });
   }
