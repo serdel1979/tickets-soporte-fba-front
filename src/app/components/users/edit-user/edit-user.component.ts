@@ -16,9 +16,10 @@ export class EditUserComponent implements OnInit {
   public form!: FormGroup;
   submitted = false;
   formValid = true;
-  isadmin!:boolean;
+  isadmin!: boolean;
   user!: User;
   id!: string;
+  show: boolean = false;
   constructor(private fb: FormBuilder,
     private usuarioService: UsuariosService,
     private router: Router,
@@ -40,7 +41,7 @@ export class EditUserComponent implements OnInit {
       roleadmin: [''],
     });
 
-    
+
 
   }
 
@@ -76,7 +77,7 @@ export class EditUserComponent implements OnInit {
       return;
     }
     const usrnuevo = this.usuarioEditado(this.form.value);
-    this.usuarioService.editUser(this.id,usrnuevo)
+    this.usuarioService.editUser(this.id, usrnuevo)
       .subscribe(data => {
         swal.fire('Ok', 'Usuario modificado', 'success');
       }, (err: any) => {
@@ -92,26 +93,29 @@ export class EditUserComponent implements OnInit {
   }
 
 
+  password() {
+    this.show = !this.show;
+  }
 
-  usuarioEditado(form: any):any{
+  usuarioEditado(form: any): any {
     let roladmin = this.form.value['roleadmin'];
     console.log(typeof roladmin);
-    let roles: Array<any>=[]
-    roles.push({"Role":"user"})
-    if (roladmin){
-      roles.push({"Role":"admin"})
-    } 
+    let roles: Array<any> = []
+    roles.push({ "Role": "user" })
+    if (roladmin) {
+      roles.push({ "Role": "admin" })
+    }
     //tengo los roles
     let user = this.form.value['user'];
     let password = this.form.value['password'];
-    if (user && password){
-      return {user : user, password:password, roles: roles};
+    if (user && password) {
+      return { user: user, password: password, roles: roles };
     }
-    if (user && !password){
-      return {user : user, roles: roles};
+    if (user && !password) {
+      return { user: user, roles: roles };
     }
-    if (!user && password){
-      return {password : password, roles: roles};
+    if (!user && password) {
+      return { password: password, roles: roles };
     }
   }
 
