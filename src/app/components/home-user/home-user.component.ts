@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { SolicitudesService } from 'src/app/services/solicitudes.service';
 import { ISolicitud } from '../../interface/solicitud.interface';
@@ -21,7 +22,8 @@ export class HomeUserComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private loginService: LoginService,
-    private solicitudesServices: SolicitudesService) { 
+    private solicitudesServices: SolicitudesService,
+    private router: Router) { 
 
     }
 
@@ -34,6 +36,10 @@ export class HomeUserComponent implements OnInit {
     this.solicitudesServices.getMySolicitudes(user.user).subscribe(data => {
       this.solicitudes = data;
     });
+  }
+
+  solicitudNueva(){
+    this.router.navigate(['/home/crear-solicitud']);
   }
 
 }

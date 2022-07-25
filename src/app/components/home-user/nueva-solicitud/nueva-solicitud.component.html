@@ -1,0 +1,29 @@
+<app-tool-bar></app-tool-bar>
+<div class="card">
+    <div class="card-header">
+        Usuario
+        <div class="container m-5">
+            <div class="jumbotron">
+                <form [formGroup]="form" (submit)="guardar()" method="post">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                        <input formControlName="usuario" type="text" class="form-control" id="usuario" placeholder="Usuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Equipo</label>
+                        <input formControlName="equipo" type="text" class="form-control" id="equipo" placeholder="Equipo, impresora, monitor o periférico">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                        <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"></textarea>
+                    </div>
+                    <button *ngIf="form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary">Enviar</button>
+                    <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary" disabled>Enviar</button>
+                    <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
+                    (click)="volver()">Volver</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,5 +14,9 @@ export class SolicitudesService {
     return this.http.get<any[]>(`http://localhost:5000/solicitudes/${dep}`);
   }
 
+  crearSolicitud(solicitud:any): Observable<any>{
+    return this.http.post<any>(`http://localhost:5000/solicitudes`,solicitud);
+  }
+
 
 }

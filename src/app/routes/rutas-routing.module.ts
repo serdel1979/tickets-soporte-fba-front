@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from '../components/about/about.component';
 import { HomeAdminComponent } from '../components/home-admin/home-admin.component';
 import { HomeUserComponent } from '../components/home-user/home-user.component';
+import { NuevaSolicitudComponent } from '../components/home-user/nueva-solicitud/nueva-solicitud.component';
 import { LoginComponent } from '../components/login/login.component';
 import { CrearUserComponent } from '../components/users/crear-user/crear-user.component';
 import { EditUserComponent } from '../components/users/edit-user/edit-user.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
   },
   { path: 'home', 
     component: HomeUserComponent, 
+    canActivate : [LoginGuard]
+  }, 
+  { path: 'home/crear-solicitud', 
+    component: NuevaSolicitudComponent, 
     canActivate : [LoginGuard]
   }, 
   { path: 'about', 

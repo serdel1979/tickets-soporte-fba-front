@@ -10,12 +10,9 @@
           Para solicitudes de asistencia técnica, ayuda o reparaciones relacionadas a equipamiento informático.
         </p>
         <hr class="my-4" />
-        <p>
-          Puede generar una solicitud...
-        </p>
-        <a class="btn btn-primary" role="button">Generar</a>
+        <a class="btn btn-primary" (click)="solicitudNueva()" role="button">Generar solicitud</a>
       </div>
-      <table class="table">
+      <table class="table" style="margin-top: 20px;">
         <thead>
           <tr>
             <th scope="col">Descripción</th>
@@ -27,7 +24,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let s of solicitudes | paginate: { itemsPerPage:4, currentPage: page}">
-            <th>{{s.descripcion}}</th>
+            <td>{{s.descripcion}}</td>
             <td>{{s.usuario}}</td>
             <td>{{s.equipo}}</td>
             <td>{{s.estado}}</td>

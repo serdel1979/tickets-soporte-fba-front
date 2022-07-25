@@ -19,6 +19,7 @@ import { JwtInterceptorInterceptor } from './middleware/jwt-interceptor.intercep
 import { NgxPaginationModule } from "ngx-pagination";
 import { FormsModule } from '@angular/forms';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
+import { NuevaSolicitudComponent } from './components/home-user/nueva-solicitud/nueva-solicitud.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { EditUserComponent } from './components/users/edit-user/edit-user.compon
     UsersComponent,
     ErrorComponent,
     CrearUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    NuevaSolicitudComponent
     
   ],
   imports: [
