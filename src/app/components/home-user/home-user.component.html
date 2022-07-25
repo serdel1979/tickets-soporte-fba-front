@@ -4,45 +4,40 @@
     Usuario
     <div class="container m-5">
       <div class="jumbotron">
-        <h1 class="display-4">Hola</h1>
         <p class="lead">
+          {{fechahoy}}
+          <br>
           Para solicitudes de asistencia técnica, ayuda o reparaciones relacionadas a equipamiento informático.
         </p>
         <hr class="my-4" />
         <p>
           Puede generar una solicitud...
         </p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Generar</a>
+        <a class="btn btn-primary" role="button">Generar</a>
       </div>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Equipo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr *ngFor="let s of solicitudes | paginate: { itemsPerPage:4, currentPage: page}">
+            <th>{{s.descripcion}}</th>
+            <td>{{s.usuario}}</td>
+            <td>{{s.equipo}}</td>
+            <td>{{s.estado}}</td>
+            <td> ver... </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+         
         </tbody>
       </table>
+      <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+      </pagination-controls>
     </div>
   </div>
 </div>

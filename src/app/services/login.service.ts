@@ -38,6 +38,10 @@ export class LoginService {
     return user.user;
   }
 
+  userLogueado(){
+    return this.user;
+  }
+
   logout() {
     this.cookie.delete('cookie-name','/');
     localStorage.removeItem('user');
