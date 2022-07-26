@@ -7,17 +7,16 @@
         <path
           d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" />
       </svg>
-      <a class="navbar-brand"><b> {{usr}} </b></a>
+      <a  class="navbar-brand" routerLink="/home"><b> {{usr}} </b></a>
     </div>
     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav">
-        <a class="navbar-brand" routerLink="/home">Home</a>
         <a class="navbar-brand" routerLink="/admin" *ngIf="isAdmin">Solicitudes</a>
         <a class="navbar-brand" routerLink="/users" *ngIf="isAdmin">Usuarios</a>
-        <a class="navbar-brand" routerLink="/mi_historial">Mi Historial</a>
+        <a class="navbar-brand" routerLink="/mi_historial" *ngIf="!isAdmin">Mi Historial</a>
         <a class="navbar-brand" routerLink="/historial" *ngIf="isAdmin">Historial</a>
       </div>
       <div class="navbar-nav ms-auto">
