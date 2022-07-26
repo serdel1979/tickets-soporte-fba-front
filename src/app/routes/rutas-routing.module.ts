@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from '../components/about/about.component';
+import { HistorialComponent } from '../components/historial/historial.component';
 import { HomeAdminComponent } from '../components/home-admin/home-admin.component';
 import { HomeUserComponent } from '../components/home-user/home-user.component';
 import { NuevaSolicitudComponent } from '../components/home-user/nueva-solicitud/nueva-solicitud.component';
 import { LoginComponent } from '../components/login/login.component';
+import { MiHistorialComponent } from '../components/mi-historial/mi-historial.component';
 import { CrearUserComponent } from '../components/users/crear-user/crear-user.component';
 import { EditUserComponent } from '../components/users/edit-user/edit-user.component';
 import { UsersComponent } from '../components/users/users.component';
@@ -39,8 +41,12 @@ const routes: Routes = [
     component: NuevaSolicitudComponent, 
     canActivate : [LoginGuard]
   }, 
-  { path: 'about', 
-    component: AboutComponent, 
+  { path: 'historial', 
+    component: HistorialComponent, 
+    canActivate : [LoginGuard] 
+  },
+  { path: 'mi_historial', 
+    component: MiHistorialComponent, 
     canActivate : [LoginGuard] 
   },
   { path: '',

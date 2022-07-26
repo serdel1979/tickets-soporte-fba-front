@@ -17,7 +17,8 @@
         <a class="navbar-brand" routerLink="/home">Home</a>
         <a class="navbar-brand" routerLink="/admin" *ngIf="isAdmin">Solicitudes</a>
         <a class="navbar-brand" routerLink="/users" *ngIf="isAdmin">Usuarios</a>
-        <a class="navbar-brand" routerLink="/about">Info</a>
+        <a class="navbar-brand" routerLink="/mi_historial">Mi Historial</a>
+        <a class="navbar-brand" routerLink="/historial" *ngIf="isAdmin">Historial</a>
       </div>
       <div class="navbar-nav ms-auto">
         <a class="navbar-brand"  style="cursor:pointer;" (click)="logout()">Salir</a>

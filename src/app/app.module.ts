@@ -20,6 +20,8 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { FormsModule } from '@angular/forms';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { NuevaSolicitudComponent } from './components/home-user/nueva-solicitud/nueva-solicitud.component';
+import { MiHistorialComponent } from './components/mi-historial/mi-historial.component';
+import { HistorialComponent } from './components/historial/historial.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { NuevaSolicitudComponent } from './components/home-user/nueva-solicitud/
     ErrorComponent,
     CrearUserComponent,
     EditUserComponent,
-    NuevaSolicitudComponent
+    NuevaSolicitudComponent,
+    MiHistorialComponent,
+    HistorialComponent
     
   ],
   imports: [
