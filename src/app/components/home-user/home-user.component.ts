@@ -35,7 +35,6 @@ export class HomeUserComponent implements OnInit {
     const { user } = this.user;
     this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(data => {
       this.solicitudes = data;
-      console.log(this.solicitudes);
     });
   }
 
