@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { SolicitudesService } from 'src/app/services/solicitudes.service';
 import { ISolicitud } from '../../interface/solicitud.interface';
+import { WebSocketService } from '../../web-socket.service';
 declare var window: any;
 
 @Component({
@@ -29,7 +30,8 @@ export class HomeUserComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private loginService: LoginService,
     private solicitudesServices: SolicitudesService,
-    private router: Router) { 
+    private router: Router,
+    private websocket: WebSocketService) { 
 
     }
 
@@ -39,12 +41,23 @@ export class HomeUserComponent implements OnInit {
       this.user = data;
     })
     const { user } = this.user;
+    this.websocket.listen('signal').subscribe((data:any)=>{
+      this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(data => {
+        this.solicitudes = data;
+      });
+    })
     this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(data => {
       this.solicitudes = data;
     });
     this.formModal = new window.bootstrap.Modal(
       document.getElementById('myModal')
     );
+  }
+
+  
+
+  cargaDatos(){
+
   }
 
   solicitudNueva(){

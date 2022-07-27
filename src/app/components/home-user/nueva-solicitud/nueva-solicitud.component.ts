@@ -5,6 +5,7 @@ import { ISolicitud } from 'src/app/interface/solicitud.interface';
 import { LoginService } from '../../../services/login.service';
 import { SolicitudesService } from '../../../services/solicitudes.service';
 import swal from 'sweetalert2';
+import { WebSocketService } from 'src/app/web-socket.service';
 
 @Component({
   selector: 'app-nueva-solicitud',
@@ -20,7 +21,8 @@ export class NuevaSolicitudComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router,
     private loginService: LoginService,
-    private solicitudesService: SolicitudesService) { }
+    private solicitudesService: SolicitudesService,
+    private wsocketService: WebSocketService ) { }
 
   ngOnInit(): void {
     this.loginService.userLogueado().subscribe(data => {
@@ -46,6 +48,7 @@ export class NuevaSolicitudComponent implements OnInit {
   guardar() {
     this.solicitudesService.crearSolicitud(this.form.value)
       .subscribe(data => {
+        this.wsocketService.sendMessage("Guarda registro");
         this.volver();
       },
         (err: any) => {

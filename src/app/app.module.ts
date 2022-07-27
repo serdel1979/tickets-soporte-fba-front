@@ -23,6 +23,9 @@ import { NuevaSolicitudComponent } from './components/home-user/nueva-solicitud/
 import { MiHistorialComponent } from './components/mi-historial/mi-historial.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { EditSolicitudComponent } from './components/home-admin/edit-solicitud/edit-solicitud.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 
 @NgModule({
@@ -50,6 +53,7 @@ import { EditSolicitudComponent } from './components/home-admin/edit-solicitud/e
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
+    SocketIoModule.forRoot(config),
     NgxPermissionsModule.forRoot()
   ],
   providers: [CookieService,{

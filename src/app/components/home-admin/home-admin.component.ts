@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interface/user.interface';
 import { LoginService } from 'src/app/services/login.service';
+import { WebSocketService } from 'src/app/web-socket.service';
 import { SolicitudesService } from '../../services/solicitudes.service';
 
 @Component({
@@ -19,18 +20,25 @@ export class HomeAdminComponent implements OnInit {
   solicitudes!: any[];
   public page!: number;
 
-  constructor(private loginService: LoginService, private router: Router, private solicitudesHoy: SolicitudesService) {
+  constructor(private loginService: LoginService, private wsocketService: WebSocketService, private router: Router, private solicitudesHoy: SolicitudesService) {
     this.loginService.user.subscribe(x => this.user = x);
   }
 
 
   ngOnInit(): void {
     this.fechahoy = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
+    this.wsocketService.listen('signal').subscribe((data:any)=>{
+      console.log(data);
+      this.cargarDatos();
+    })
+    this.cargarDatos();
+  }
+
+  cargarDatos(){
     this.solicitudesHoy.getSolicitudesHoy().subscribe((data:any)=>{
       this.solicitudes = data;
     })
   }
-
 
   get isAdmin() {
     let { user } = this.user;

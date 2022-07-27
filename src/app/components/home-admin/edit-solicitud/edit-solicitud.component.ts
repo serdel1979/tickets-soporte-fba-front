@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SolicitudesService } from '../../../services/solicitudes.service';
 import swal from 'sweetalert2';
+import { WebSocketService } from 'src/app/web-socket.service';
 
 @Component({
   selector: 'app-edit-solicitud',
@@ -15,7 +16,7 @@ export class EditSolicitudComponent implements OnInit {
   solicitud!: any;
   public form!: FormGroup;
   public formver!: FormGroup;
-  constructor(private fb: FormBuilder, private rutaActiva: ActivatedRoute, private router: Router, private solicitudesServices: SolicitudesService) { }
+  constructor(private fb: FormBuilder,private wsocketService: WebSocketService ,private rutaActiva: ActivatedRoute, private router: Router, private solicitudesServices: SolicitudesService) { }
 
   ngOnInit(): void {
     this.id = this.rutaActiva.snapshot.params['id'];
@@ -45,6 +46,7 @@ export class EditSolicitudComponent implements OnInit {
 
   guardar() {
     this.solicitudesServices.editaSolicitud(this.id, this.form.value).subscribe(data => {
+      this.wsocketService.sendMessage("Edita registro");
       swal.fire('Ok', 'Usuario modificado', 'success');
       this.volver();
     }, (err: any) => {
