@@ -35,9 +35,11 @@ export class NuevaSolicitudComponent implements OnInit {
       descripcion: ['', Validators.required],
       usuario: ['', Validators.required],
       departamento: ['', Validators.required],
-      equipo: ['', Validators.required]
+      equipo: ['', Validators.required],
+      estado: ['']
     });
     this.form.controls['departamento'].setValue(this.user['user'].user);
+    this.form.controls['estado'].setValue("PENDIENTE");
   }
 
 
