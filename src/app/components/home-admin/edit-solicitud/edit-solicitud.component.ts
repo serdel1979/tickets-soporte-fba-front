@@ -33,6 +33,9 @@ export class EditSolicitudComponent implements OnInit {
         equipo: [''],
         usuario: [''],
       });
+      this.form.controls['tecnico'].setValue(this.solicitud['tecnico']);
+      this.form.controls['estado'].setValue(this.solicitud['estado']);
+      this.form.controls['informe'].setValue(this.solicitud['informe']);
       this.formver.controls['descripcion'].setValue(this.solicitud['descripcion']);
       this.formver.controls['departamento'].setValue(this.solicitud['departamento']);
       this.formver.controls['usuario'].setValue(this.solicitud['usuario']);

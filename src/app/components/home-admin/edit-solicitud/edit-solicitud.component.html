@@ -31,7 +31,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Comentario técnico</label>
-                        <textarea formControlName="informe" class="form-control" id="informe" rows="3"></textarea>
+                        <textarea formControlName="informe" class="form-control" id="informe" rows="3">{{ this.form.value['informe'] }}</textarea>
                     </div>
                     <button *ngIf="form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary">Enviar</button>
                     <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary" disabled>Enviar</button>
