@@ -1,7 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interface/user.interface';
 import { LoginService } from 'src/app/services/login.service';
+import { SolicitudesService } from '../../services/solicitudes.service';
 
 @Component({
   selector: 'app-home-admin',
@@ -10,13 +12,23 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HomeAdminComponent implements OnInit {
 
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
+  fechahoy:any
   user!: User;
-  constructor(private loginService: LoginService, private router: Router) {
+  solicitudes!: any[];
+  public page!: number;
+
+  constructor(private loginService: LoginService, private router: Router, private solicitudesHoy: SolicitudesService) {
     this.loginService.user.subscribe(x => this.user = x);
   }
 
 
   ngOnInit(): void {
+    this.fechahoy = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
+    this.solicitudesHoy.getSolicitudesHoy().subscribe((data:any)=>{
+      this.solicitudes = data;
+    })
   }
 
 
@@ -29,5 +41,9 @@ export class HomeAdminComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  editar(solicitud:any){
+    this.router.navigate([`/admin/editar_solicitud/${solicitud._id}`]);
   }
 }

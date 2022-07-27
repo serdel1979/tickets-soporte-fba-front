@@ -7,7 +7,7 @@
                 <form [formGroup]="form" (submit)="guardar()" method="post">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-                        <input formControlName="usuario" type="text" class="form-control" id="usuario" placeholder="Usuario">
+                        <input formControlName="usuario" type="text" class="form-control" id="usuario" placeholder="Escribí tu nombre">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput2" class="form-label">Equipo</label>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                        <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"></textarea>
+                        <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3" placeholder="Describí el problema"></textarea>
                     </div>
                     <button *ngIf="form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary">Enviar</button>
                     <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary" disabled>Enviar</button>

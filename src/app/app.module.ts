@@ -22,6 +22,7 @@ import { EditUserComponent } from './components/users/edit-user/edit-user.compon
 import { NuevaSolicitudComponent } from './components/home-user/nueva-solicitud/nueva-solicitud.component';
 import { MiHistorialComponent } from './components/mi-historial/mi-historial.component';
 import { HistorialComponent } from './components/historial/historial.component';
+import { EditSolicitudComponent } from './components/home-admin/edit-solicitud/edit-solicitud.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { HistorialComponent } from './components/historial/historial.component';
     EditUserComponent,
     NuevaSolicitudComponent,
     MiHistorialComponent,
-    HistorialComponent
+    HistorialComponent,
+    EditSolicitudComponent
     
   ],
   imports: [

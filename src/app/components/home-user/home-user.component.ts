@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { SolicitudesService } from 'src/app/services/solicitudes.service';
 import { ISolicitud } from '../../interface/solicitud.interface';
+declare var window: any;
 
 @Component({
   selector: 'app-home-user',
@@ -13,11 +14,16 @@ import { ISolicitud } from '../../interface/solicitud.interface';
 })
 export class HomeUserComponent implements OnInit {
 
+  formModal: any;
   today: Date = new Date();
   pipe = new DatePipe('en-US');
   fechahoy:any
   user!: any;
   solicitudes!: ISolicitud[];
+  solicitudEstado! : string;
+  solicitudTecnico! : string;
+  solicitudInforme! : string;
+  pressver:boolean = false;
   public page!: number;
 
   constructor(private fb: FormBuilder,
@@ -36,10 +42,24 @@ export class HomeUserComponent implements OnInit {
     this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(data => {
       this.solicitudes = data;
     });
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    );
   }
 
   solicitudNueva(){
     this.router.navigate(['/home/crear-solicitud']);
+  }
+
+  openModal(s:any) {
+    this.solicitudEstado = s.estado;
+    this.solicitudTecnico = s.tecnico;
+    this.solicitudInforme = s.informe;
+    this.formModal.show();
+  }
+
+  cierraModal(){
+    this.formModal.hide();
   }
 
 }

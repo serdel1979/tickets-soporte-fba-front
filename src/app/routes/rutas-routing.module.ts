@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from '../components/about/about.component';
 import { HistorialComponent } from '../components/historial/historial.component';
+import { EditSolicitudComponent } from '../components/home-admin/edit-solicitud/edit-solicitud.component';
 import { HomeAdminComponent } from '../components/home-admin/home-admin.component';
 import { HomeUserComponent } from '../components/home-user/home-user.component';
 import { NuevaSolicitudComponent } from '../components/home-user/nueva-solicitud/nueva-solicitud.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
     component: HomeAdminComponent, 
     canActivate : [LoginGuard,RolesGuard]
   }, 
+  { path: 'admin/editar_solicitud/:id', 
+    component: EditSolicitudComponent, 
+    canActivate : [LoginGuard,RolesGuard]
+  },
   { path: 'users', 
     component: UsersComponent, 
     canActivate : [LoginGuard,RolesGuard]
