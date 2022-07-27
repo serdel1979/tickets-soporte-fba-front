@@ -29,8 +29,10 @@
             <td>{{ solicitud.departamento }}</td>
             <td>{{ solicitud.usuario }}</td>
             <td>{{ solicitud.equipo }}</td>
-            <td>{{ solicitud.descripcion }}</td>
-            <td>{{ solicitud.estado }}</td>
+            <td><textarea disabled>{{ solicitud.descripcion }}</textarea></td>
+            <td *ngIf="solicitud.estado == 'VISTO'"><b><p style="color:#8a511d">{{ solicitud.estado }}</p></b></td>
+            <td *ngIf="solicitud.estado == 'PENDIENTE'"><b><p style="color:#e40e06">{{ solicitud.estado }}</p></b></td>
+            <td *ngIf="solicitud.estado == 'SOLUCIONADO'"><b><p style="color:#09ca29">{{ solicitud.estado }}</p></b></td>
             <td>
               <a style="cursor:pointer;" (click)="editar(solicitud)" role="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

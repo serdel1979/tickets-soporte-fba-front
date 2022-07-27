@@ -10,10 +10,14 @@ export class SolicitudesService {
   constructor(private http: HttpClient) { }
 
 
+  //usado para el historial de cada departamento
   getMySolicitudes(dep:string): Observable<any[]>{
     return this.http.get<any[]>(`http://localhost:5000/solicitudes/${dep}`);
   }
 
+  getSolicitudes(): Observable<any[]>{
+    return this.http.get<any[]>(`http://localhost:5000/solicitudes`);
+  }
 
   getSolicitud(id:string):Observable<any>{
     return this.http.get<any>(`http://localhost:5000/solicitudes/solicitud/${id}`);
