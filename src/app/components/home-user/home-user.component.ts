@@ -42,8 +42,8 @@ export class HomeUserComponent implements OnInit {
     })
     const { user } = this.user;
     this.websocket.listen('signal').subscribe((data:any)=>{
-      this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(data => {
-        this.solicitudes = data;
+      this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(dat => {
+        this.solicitudes = dat;
       });
     })
     this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(data => {

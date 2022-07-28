@@ -28,7 +28,6 @@ export class HomeAdminComponent implements OnInit {
   ngOnInit(): void {
     this.fechahoy = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
     this.wsocketService.listen('signal').subscribe((data:any)=>{
-      console.log(data);
       this.cargarDatos();
     })
     this.cargarDatos();

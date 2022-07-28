@@ -10,8 +10,7 @@ export class WebSocketService {
   constructor(private socket: Socket) { }
 
   sendMessage(msg: string) {
-    console.log("envia ->",msg);
-    this.socket.emit('signal', msg);
+    this.socket.emit('signal',msg);
   }
 
   getMessage() {

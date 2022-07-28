@@ -48,7 +48,7 @@ export class NuevaSolicitudComponent implements OnInit {
   guardar() {
     this.solicitudesService.crearSolicitud(this.form.value)
       .subscribe(data => {
-        this.wsocketService.sendMessage("Guarda registro");
+        this.wsocketService.sendMessage("Nueva solicitud");
         this.volver();
       },
         (err: any) => {

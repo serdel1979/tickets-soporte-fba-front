@@ -46,7 +46,7 @@ export class EditSolicitudComponent implements OnInit {
 
   guardar() {
     this.solicitudesServices.editaSolicitud(this.id, this.form.value).subscribe(data => {
-      this.wsocketService.sendMessage("Edita registro");
+      this.wsocketService.sendMessage("Admin edita solicitud");
       swal.fire('Ok', 'Usuario modificado', 'success');
       this.volver();
     }, (err: any) => {
