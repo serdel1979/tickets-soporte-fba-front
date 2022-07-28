@@ -24,7 +24,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let s of solicitudes | paginate: { itemsPerPage:4, currentPage: page}">
-            <td><textarea>{{s.descripcion}}</textarea></td>
+            <td><textarea disabled>{{s.descripcion}}</textarea></td>
             <td>{{s.usuario}}</td>
             <td>{{s.equipo}}</td>
             <td *ngIf="s.estado == 'VISTO'"><b>
