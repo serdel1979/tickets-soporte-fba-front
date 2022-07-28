@@ -34,10 +34,12 @@
                         <label for="exampleFormControlTextarea1" class="form-label">Comentario técnico</label>
                         <textarea formControlName="informe" class="form-control" id="informe" rows="3">{{ this.form.value['informe'] }}</textarea>
                     </div>
-                    <button *ngIf="form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary">Enviar</button>
-                    <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary" disabled>Enviar</button>
+                    <button *ngIf="form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary">Guardar</button>
+                    <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary" disabled>Guardar</button>
                     <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
-                    (click)="volver()">Volver</button>
+                    (click)="volver()">Ir a home</button>
+                    <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
+                    (click)="volverAhistorial()">Ir a historial</button>
                 </form>
 
             </div>

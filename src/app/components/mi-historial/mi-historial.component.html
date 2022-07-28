@@ -4,7 +4,7 @@
     Mi historial
     <div class="container m-5">
       <div class="jumbotron">
-        <h3 class="display-4">Mi historial de pedidos a soporte técnico</h3>
+        <h3>Mi historial de pedidos a soporte técnico</h3>
 
         <table class="table" style="margin-top: 20px;">
           <thead>
@@ -32,6 +32,9 @@
                 </b></td>
               <td *ngIf="s.estado == 'SOLUCIONADO'"><b>
                   <p style="color:#09ca29">{{ s.estado }}</p>
+                </b></td>
+              <td *ngIf="s.estado == 'CERRADO'"><b>
+                  <p style="color:#031105">{{ s.estado }}</p>
                 </b></td>
               <td>{{s.tecnico}}</td>
               <td><textarea disabled>{{s.informe}}</textarea></td>

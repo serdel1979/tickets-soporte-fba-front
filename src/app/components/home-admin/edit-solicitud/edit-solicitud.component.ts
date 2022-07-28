@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SolicitudesService } from '../../../services/solicitudes.service';
 import swal from 'sweetalert2';
 import { WebSocketService } from 'src/app/web-socket.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-solicitud',
@@ -16,7 +17,7 @@ export class EditSolicitudComponent implements OnInit {
   solicitud!: any;
   public form!: FormGroup;
   public formver!: FormGroup;
-  constructor(private fb: FormBuilder,private wsocketService: WebSocketService ,private rutaActiva: ActivatedRoute, private router: Router, private solicitudesServices: SolicitudesService) { }
+  constructor(private fb: FormBuilder,private _location: Location,private wsocketService: WebSocketService ,private rutaActiva: ActivatedRoute, private router: Router, private solicitudesServices: SolicitudesService) { }
 
   ngOnInit(): void {
     this.id = this.rutaActiva.snapshot.params['id'];
@@ -56,6 +57,10 @@ export class EditSolicitudComponent implements OnInit {
 
   volver() {
     this.router.navigate(['/admin']);
+  }
+
+  volverAhistorial() {
+    this.router.navigate(['/historial']);
   }
 
 }
