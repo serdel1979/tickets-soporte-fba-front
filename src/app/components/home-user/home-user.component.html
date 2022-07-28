@@ -7,10 +7,10 @@
         <p class="lead">
           {{fechahoy}}
           <br>
-          Para solicitudes de asistencia técnica, ayuda o reparaciones relacionadas a equipamiento informático.
+          Para pedidos a Soporte técnico informático.
         </p>
         <hr class="my-4" />
-        <a class="btn btn-primary" (click)="solicitudNueva()" role="button">Generar solicitud</a>
+        <a class="btn btn-primary" (click)="solicitudNueva()" role="button">Generar nuevo</a>
       </div>
       <table class="table" style="margin-top: 20px;">
         <thead>
@@ -24,7 +24,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let s of solicitudes | paginate: { itemsPerPage:4, currentPage: page}">
-            <td>{{s.descripcion}}</td>
+            <td><textarea>{{s.descripcion}}</textarea></td>
             <td>{{s.usuario}}</td>
             <td>{{s.equipo}}</td>
             <td *ngIf="s.estado == 'VISTO'"><b>
@@ -35,6 +35,9 @@
               </b></td>
             <td *ngIf="s.estado == 'SOLUCIONADO'"><b>
                 <p style="color:#09ca29">{{ s.estado }}</p>
+              </b></td>
+            <td *ngIf="s.estado == 'CERRADO'"><b>
+                <p style="color:#031105">{{ s.estado }}</p>
               </b></td>
             <td>
               <a style="cursor:pointer;margin-left: 10px;" (click)="openModal(s)" role="button">
