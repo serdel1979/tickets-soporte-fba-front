@@ -42,6 +42,8 @@ export class HomeUserComponent implements OnInit {
     })
     const { user } = this.user;
     this.websocket.listen('signal').subscribe((data:any)=>{
+      const audio = new Audio('../../../assets/tono.mp3');
+      audio.play()
       this.solicitudesServices.getMySolicitudesDeHoy(user.user).subscribe(dat => {
         this.solicitudes = dat;
       });
