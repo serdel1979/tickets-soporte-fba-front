@@ -5,6 +5,8 @@
         <div class="container m-5">
             <div class="jumbotron">
                 <h4>Historial general</h4>
+                <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
+                    (click)="imprimir()">Imprimir</button>
                 <div class="form-group">
                     <input type="text" id="buscar" (keydown)="onKeypressEvent($event)" [(ngModel)]="filterSol"
                       class="forms-control" placeholder="Buscar.." />

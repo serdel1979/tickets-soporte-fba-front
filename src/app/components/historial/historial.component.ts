@@ -2,6 +2,12 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SolicitudesService } from 'src/app/services/solicitudes.service';
+import { PdfMakeWrapper, Table } from 'pdfmake-wrapper';
+import { ITable } from 'pdfmake-wrapper/lib/interfaces';
+import * as pdfMake from  'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { DataResponse } from 'src/app/interface/data.pdf';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-historial',
@@ -16,6 +22,10 @@ export class HistorialComponent implements OnInit {
   solicitudes!:any[];
   filterSol: string = '';
   pipe = new DatePipe('en-US');
+
+
+
+
   constructor(private solicitudesService: SolicitudesService, private router: Router) { }
 
   ngOnInit(): void {
@@ -48,5 +58,26 @@ export class HistorialComponent implements OnInit {
   }
 
 
+  imprimir(){
+    const pdf: PdfMakeWrapper = new PdfMakeWrapper();
+    let dataconvertido = this.convertirData(this.solicitudes);
+    let tabla = this.crateTable(dataconvertido);
+    pdf.add(tabla);
+    pdf.create().open();
+   
+   }
+
+   convertirData(data: any[]): any[]{
+      let tabla = [];
+      tabla.push(['Fecha','Usuario','Departamento','Descripción','Equipo','Estado','Técnico','Informe']);
+      for(let row of data){
+        tabla.push([row.createdAt,row.usuario,row.departamento,row.descripcion,row.equipo,row.estado,row.tecnico,row.informe]);
+      }
+      return tabla;
+    }
+
+   crateTable(data: any): ITable{
+      return new Table(data).end;
+   }
 
 }
