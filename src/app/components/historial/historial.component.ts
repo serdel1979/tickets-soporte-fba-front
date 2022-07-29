@@ -62,6 +62,8 @@ export class HistorialComponent implements OnInit {
     const pdf: PdfMakeWrapper = new PdfMakeWrapper();
     let dataconvertido = this.convertirData(this.solicitudes);
     let tabla = this.crateTable(dataconvertido);
+    pdf.pageOrientation("landscape");
+    pdf.pageSize({width:1500,height:1500});
     pdf.add(tabla);
     pdf.create().open();
    
@@ -69,9 +71,10 @@ export class HistorialComponent implements OnInit {
 
    convertirData(data: any[]): any[]{
       let tabla = [];
+      tabla.push([{text: 'Historial - Soporte técnico', colSpan: 8},'','','','','','','']);
       tabla.push(['Fecha','Usuario','Departamento','Descripción','Equipo','Estado','Técnico','Informe']);
       for(let row of data){
-        tabla.push([row.createdAt,row.usuario,row.departamento,row.descripcion,row.equipo,row.estado,row.tecnico,row.informe]);
+        tabla.push([this.convertirFecha(row.createdAt),row.usuario,row.departamento,row.descripcion,row.equipo,row.estado,row.tecnico,row.informe]);
       }
       return tabla;
     }
