@@ -39,7 +39,7 @@ export class HistorialComponent implements OnInit {
   }
 
   convertirFecha(fecha: Date){
-    return  this.pipe.transform(Date.now(), 'dd-MM-yyyy');
+    return  this.pipe.transform(fecha, 'dd-MM-yyyy');
   }
 
   onKeypressEvent(event: any) {
