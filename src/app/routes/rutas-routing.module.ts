@@ -48,7 +48,7 @@ const routes: Routes = [
   }, 
   { path: 'historial', 
     component: HistorialComponent, 
-    canActivate : [LoginGuard] 
+    canActivate : [LoginGuard,RolesGuard] 
   },
   { path: 'mi_historial', 
     component: MiHistorialComponent, 
