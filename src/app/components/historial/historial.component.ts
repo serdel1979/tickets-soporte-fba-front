@@ -63,7 +63,7 @@ export class HistorialComponent implements OnInit {
     let dataconvertido = this.convertirData(this.solicitudes);
     let tabla = this.crateTable(dataconvertido);
     pdf.pageOrientation("landscape");
-    pdf.pageSize({width:1500,height:1500});
+    pdf.pageSize({width:1300,height:1300});
     pdf.add(tabla);
     pdf.create().open();
    
