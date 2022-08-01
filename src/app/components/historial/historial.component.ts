@@ -73,11 +73,18 @@ export class HistorialComponent implements OnInit {
       let tabla = [];
       tabla.push([{text: 'Historial - Soporte técnico', colSpan: 8},'','','','','','','']);
       tabla.push(['Fecha','Usuario','Departamento','Descripción','Equipo','Estado','Técnico','Informe']);
-      for(let row of data){
-        tabla.push([this.convertirFecha(row.createdAt),row.usuario,row.departamento,row.descripcion,row.equipo,row.estado,row.tecnico,row.informe]);
+      for(let row of data){ 
+        tabla.push([this.convertirFecha(row.createdAt),row.usuario,row.departamento,row.descripcion,row.equipo,row.estado,this.convertRow(row.tecnico),this.convertRow(row.informe)]);
       }
       return tabla;
     }
+
+  convertRow(fila: string): string{
+    if(fila != undefined)
+      return fila;
+    return "Sin definir";
+  }
+
 
    crateTable(data: any): ITable{
       return new Table(data).end;
