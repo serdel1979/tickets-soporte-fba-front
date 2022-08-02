@@ -23,7 +23,7 @@ export class LoginService {
   }
 
   login(user: User):any {
-    return this.http.post<User>('http://localhost:5000/auth/login', user).pipe(map((user: User) => {
+    return this.http.post<User>('/api/v1/auth/login', user).pipe(map((user: User) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('user', JSON.stringify(user));
       this.cookie.set('cookie-name', user.token,0.3,'/');
