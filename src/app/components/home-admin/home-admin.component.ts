@@ -28,8 +28,6 @@ export class HomeAdminComponent implements OnInit {
   ngOnInit(): void {
     this.fechahoy = this.pipe.transform(Date.now(), 'dd-MM-yyyy');
     this.wsocketService.listen('signal').subscribe((data:any)=>{
-      const audio = new Audio('../../../assets/tono.mp3');
-      audio.play()
       this.cargarDatos();
     })
     this.cargarDatos();
