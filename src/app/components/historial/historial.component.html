@@ -14,63 +14,65 @@
                     <input type="text" id="buscar" (keydown)="onKeypressEvent($event)" [(ngModel)]="filterSol"
                         class="forms-control" placeholder="Buscar.." />
                 </div>
-                <table class="table" style="margin-top: 20px;">
-                    <thead>
-                        <tr>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Usuario</th>
-                            <th scope="col">Oficina</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Equipo</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Fecha de revisión</th>
-                            <th scope="col">Técncico</th>
-                            <th scope="col">Informe</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let s of solicitudes | paginate: { itemsPerPage:5, currentPage: page}">
-                            <td>{{convertirFecha(s.createdAt)}}</td>
-                            <td>{{s.usuario}}</td>
-                            <td>{{s.departamento}}</td>
-                            <td><textarea disabled>{{s.descripcion}}</textarea></td>
-                            <td>{{s.equipo}}</td>
-                            <td *ngIf="s.estado == 'VISTO'"><b>
-                                    <p style="color:#8a511d">{{ s.estado }}</p>
-                                </b></td>
-                            <td *ngIf="s.estado == 'PENDIENTE'"><b>
-                                    <p style="color:#e40e06">{{ s.estado }}</p>
-                                </b></td>
-                            <td *ngIf="s.estado == 'SOLUCIONADO'"><b>
-                                    <p style="color:#09ca29">{{ s.estado }}</p>
-                                </b></td>
-                            <td *ngIf="s.estado == 'CERRADO'"><b>
-                                    <p style="color:#031105">{{ s.estado }}</p>
-                                </b></td>
+                <div class="table-responsive">
+                    <table class="table" style="margin-top: 20px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Oficina</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Fecha de revisión</th>
+                                <th scope="col">Técncico</th>
+                                <th scope="col">Informe</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let s of solicitudes | paginate: { itemsPerPage:5, currentPage: page}">
+                                <td>{{convertirFecha(s.createdAt)}}</td>
+                                <td>{{s.usuario}}</td>
+                                <td>{{s.departamento}}</td>
+                                <td><textarea disabled>{{s.descripcion}}</textarea></td>
+                                <td>{{s.equipo}}</td>
+                                <td *ngIf="s.estado == 'VISTO'"><b>
+                                        <p style="color:#8a511d">{{ s.estado }}</p>
+                                    </b></td>
+                                <td *ngIf="s.estado == 'PENDIENTE'"><b>
+                                        <p style="color:#e40e06">{{ s.estado }}</p>
+                                    </b></td>
+                                <td *ngIf="s.estado == 'SOLUCIONADO'"><b>
+                                        <p style="color:#09ca29">{{ s.estado }}</p>
+                                    </b></td>
+                                <td *ngIf="s.estado == 'CERRADO'"><b>
+                                        <p style="color:#031105">{{ s.estado }}</p>
+                                    </b></td>
 
-                            <td>{{convertirFecha(s.updatedAt)}}</td>
-                            <td *ngIf="s.estado == 'PENDIENTE'">PENDIENTE</td>
-                            <td *ngIf="s.estado != 'PENDIENTE'">{{s.tecnico}}</td>
-                            <td *ngIf="s.estado == 'PENDIENTE'"><textarea disabled>PENDIENTE</textarea></td>
-                            <td *ngIf="s.estado != 'PENDIENTE'"><textarea disabled>{{s.informe}}</textarea></td>
-                            <td>
-                                <a style="cursor:pointer;" (click)="editar(s)" role="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path
-                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                        <path fill-rule="evenodd"
-                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                    </svg>
-                                </a>
+                                <td>{{convertirFecha(s.updatedAt)}}</td>
+                                <td *ngIf="s.estado == 'PENDIENTE'">PENDIENTE</td>
+                                <td *ngIf="s.estado != 'PENDIENTE'">{{s.tecnico}}</td>
+                                <td *ngIf="s.estado == 'PENDIENTE'"><textarea disabled>PENDIENTE</textarea></td>
+                                <td *ngIf="s.estado != 'PENDIENTE'"><textarea disabled>{{s.informe}}</textarea></td>
+                                <td>
+                                    <a style="cursor:pointer;" (click)="editar(s)" role="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                            <path fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                        </svg>
+                                    </a>
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
                 <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
                 </pagination-controls>
             </div>
