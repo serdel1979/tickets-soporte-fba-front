@@ -3,6 +3,12 @@ import { User } from 'src/app/interface/user.interface';
 import { LoginService } from 'src/app/services/login.service';
 import { SolicitudesService } from '../../services/solicitudes.service';
 import { DatePipe } from '@angular/common';
+import { PdfMakeWrapper, Table } from 'pdfmake-wrapper';
+import { ITable } from 'pdfmake-wrapper/lib/interfaces';
+import * as pdfMake from  'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { DataResponse } from 'src/app/interface/data.pdf';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-mi-historial',
@@ -30,5 +36,38 @@ export class MiHistorialComponent implements OnInit {
   convertirFecha(fecha: Date){
     return  this.pipe.transform(Date.now(), 'dd-MM-yyyy');
   }
+
+  imprimir(){
+    const pdf: PdfMakeWrapper = new PdfMakeWrapper();
+    let dataconvertido = this.convertirData(this.solicitudes);
+    let tabla = this.crateTable(dataconvertido);
+    pdf.pageOrientation("landscape");
+    pdf.pageSize({width:1300,height:1300});
+    pdf.add(tabla);
+    pdf.create().open();
+   
+   }
+
+   convertirData(data: any[]): any[]{
+      let tabla = [];
+      tabla.push([{text: 'Mi HIstorial', colSpan: 8},'','','','','','']);
+      tabla.push(['Fecha','Usuario','Descripción','Equipo','Estado','Técnico','Informe']);
+      for(let row of data){ 
+        tabla.push([this.convertirFecha(row.createdAt),row.usuario,row.descripcion,row.equipo,row.estado,this.convertRow(row.tecnico),this.convertRow(row.informe)]);
+      }
+      return tabla;
+    }
+
+  convertRow(fila: string): string{
+    if(fila != undefined)
+      return fila;
+    return "Sin definir";
+  }
+
+
+   crateTable(data: any): ITable{
+      return new Table(data).end;
+   }
+
 
 }
