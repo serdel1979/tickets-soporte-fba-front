@@ -13,7 +13,7 @@
           Administrar pedidos {{ fechahoy }}
         </p>
       </div>
-      <div *ngIf="solicitudes.length > 0">
+      <div *ngIf="solicitudes.length && solicitudes.length > 0">
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -63,8 +63,11 @@
         <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
         </pagination-controls>
       </div>
-      <div style="margin-top:20px ;" *ngIf="solicitudes.length == 0">
+      <div style="margin-top:20px ;" *ngIf="solicitudes.length && solicitudes.length == 0">
         <h3>Nada por ahora...</h3>
+      </div>
+      <div *ngIf="!solicitudes.length">
+        <h3 style="margin-top:20px ;">Cargando...</h3>
       </div>
     </div>
   </div>

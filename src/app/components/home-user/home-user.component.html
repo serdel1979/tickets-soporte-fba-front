@@ -12,7 +12,7 @@
         <hr class="my-4" />
         <a class="btn btn-primary" (click)="solicitudNueva()" role="button">Generar nuevo</a>
       </div>
-      <div *ngIf="solicitudes.length > 0">
+      <div *ngIf="solicitudes.length && solicitudes.length > 0">
         <div class="table-responsive">
           <table class="table" style="margin-top: 20px;">
             <thead>
@@ -62,8 +62,11 @@
         <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
         </pagination-controls>
       </div>
-      <div *ngIf="solicitudes.length == 0">
+      <div *ngIf="solicitudes.length && solicitudes.length == 0">
         <h3 style="margin-top:20px ;">Nada por ahora...</h3>
+      </div>
+      <div *ngIf="!solicitudes.length">
+        <h3 style="margin-top:20px ;">Cargando...</h3>
       </div>
     </div>
   </div>
