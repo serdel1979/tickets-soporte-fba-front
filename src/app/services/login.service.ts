@@ -12,7 +12,7 @@ export class LoginService {
   private userSubject!: BehaviorSubject<User>;
   public user!: Observable<User>;
   private nombreUser!: any;
-  API = 'http://192.168.1.8:3000';
+  API = 'http://192.168.1.100:3000';
   constructor(private http: HttpClient,
     private cookie: CookieService) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || "[]"));
