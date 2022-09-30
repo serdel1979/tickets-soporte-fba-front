@@ -12,23 +12,23 @@ export class UsuariosService {
 
 
   agregaUsuario(usuario: any): Observable<any>{
-    return this.http.post<any>('http://192.168.1.100:3000/api/v1/users', usuario);
+    return this.http.post<any>('/api/v1/users', usuario);
   }
 
   getAll(): Observable<any[]>{
-    return this.http.get<any[]>('http://192.168.1.100:3000/api/v1/users');
+    return this.http.get<any[]>('/api/v1/users');
   }
 
   deleteUser(id:any): Observable<any>{
-    return this.http.delete<any>(`http://192.168.1.100:3000/api/v1/users/${id}`);
+    return this.http.delete<any>(`/api/v1/users/${id}`);
   }
 
   getUser(id:any): Observable<any>{
-    return this.http.get<any>(`hhttp://192.168.1.100:3000/api/v1/users/${id}`);
+    return this.http.get<any>(`/api/v1/users/${id}`);
   }
 
   editUser(id:any, user: any): Observable<any>{
-    return this.http.patch<any>(`http://192.168.1.100:3000/api/v1/users/${id}`, user);
+    return this.http.patch<any>(`/api/v1/users/${id}`, user);
   }
 
 }

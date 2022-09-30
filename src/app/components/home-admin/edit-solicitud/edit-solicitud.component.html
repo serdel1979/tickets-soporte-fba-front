@@ -2,47 +2,61 @@
 <div class="card">
     <div class="card-header">
         Usuario
-        <div class="container m-5">
-            <div class="jumbotron">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Departamento <b> {{ this.formver.value['departamento'] }}</b></label>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Usuario <b> {{ this.formver.value['usuario'] }} </b> </label>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Equipo <b> {{ this.formver.value['equipo'] }} </b> </label>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Descripción <b> {{ this.formver.value['descripcion'] }} </b> </label>
-                </div>
-                <form [formGroup]="form" (submit)="guardar()" method="post">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Técnico</label>
-                        <input formControlName="tecnico" type="text" class="form-control" id="tecnico" placeholder="Técnico que revisa">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Estado</label>
-                        <select formControlName="estado" class="form-select" aria-label="Default select example" placeholder="Marcar estado">
-                            <option value="VISTO">VISTO</option>
-                            <option value="PENDIENTE">PENDIENTE</option>
-                            <option value="SOLUCIONADO">SOLUCIONADO</option>
-                            <option value="CERRADO">CERRADO</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Comentario técnico</label>
-                        <textarea formControlName="informe" class="form-control" id="informe" rows="3">{{ this.form.value['informe'] }}</textarea>
-                    </div>
-                    <button *ngIf="form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary">Guardar</button>
-                    <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary" disabled>Guardar</button>
-                    <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
-                    (click)="volver()">Ir a home</button>
-                    <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
-                    (click)="volverAhistorial()">Ir a historial</button>
-                </form>
-
-            </div>
+        <div *ngIf="!solicitud; else formulario" class="alert alert-info">
+            Esperá!!!
         </div>
+        <ng-template #formulario>
+            <div class="container m-5">
+                <div class="jumbotron">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Departamento <b> {{
+                                this.formver.value['departamento'] }}</b></label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Usuario <b> {{
+                                this.formver.value['usuario'] }} </b> </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Equipo <b> {{
+                                this.formver.value['equipo'] }} </b> </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Descripción <b> {{
+                                this.formver.value['descripcion'] }} </b> </label>
+                    </div>
+                    <form [formGroup]="form" (submit)="guardar()" method="post">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Técnico</label>
+                            <input formControlName="tecnico" type="text" class="form-control" id="tecnico"
+                                placeholder="Técnico que revisa">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Estado</label>
+                            <select formControlName="estado" class="form-select" aria-label="Default select example"
+                                placeholder="Marcar estado">
+                                <option value="VISTO">VISTO</option>
+                                <option value="PENDIENTE">PENDIENTE</option>
+                                <option value="SOLUCIONADO">SOLUCIONADO</option>
+                                <option value="CERRADO">CERRADO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Comentario técnico</label>
+                            <textarea formControlName="informe" class="form-control" id="informe"
+                                rows="3">{{ this.form.value['informe'] }}</textarea>
+                        </div>
+                        <button *ngIf="form.valid" style="margin-top:10px;" type="submit"
+                            class="btn btn-primary">Guardar</button>
+                        <button *ngIf="!form.valid" style="margin-top:10px;" type="submit" class="btn btn-primary"
+                            disabled>Guardar</button>
+                        <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
+                            (click)="volver()">Ir a home</button>
+                        <button style="margin-top:10px;margin-left: 5px;" class="btn btn-primary float-right"
+                            (click)="volverAhistorial()">Ir a historial</button>
+                    </form>
+
+                </div>
+            </div>
+        </ng-template>
     </div>
 </div>
