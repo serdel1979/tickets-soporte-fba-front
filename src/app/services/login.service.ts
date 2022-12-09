@@ -12,7 +12,7 @@ export class LoginService {
   private userSubject!: BehaviorSubject<User>;
   public user!: Observable<User>;
   private nombreUser!: any;
-  API = 'http://192.168.1.100:3000';
+  API = 'https://ticket-back-raill-production.up.railway.app';
   constructor(private http: HttpClient,
     private cookie: CookieService) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || "[]"));
@@ -24,7 +24,7 @@ export class LoginService {
   }
 
   login(user: User):any {
-    return this.http.post<User>(`/api/v1/auth/login`, user).pipe(map((user: User) => {
+    return this.http.post<User>(`${this.API}/api/v1/auth/login`, user).pipe(map((user: User) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('user', JSON.stringify(user));
       this.cookie.set('cookie-name', user.token,0.3,'/');

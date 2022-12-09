@@ -10,25 +10,26 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
+  API = 'https://ticket-back-raill-production.up.railway.app';
 
   agregaUsuario(usuario: any): Observable<any>{
-    return this.http.post<any>('/api/v1/users', usuario);
+    return this.http.post<any>(`${this.API}/api/v1/users`, usuario);
   }
 
   getAll(): Observable<any[]>{
-    return this.http.get<any[]>('/api/v1/users');
+    return this.http.get<any[]>(`${this.API}/api/v1/users`);
   }
 
   deleteUser(id:any): Observable<any>{
-    return this.http.delete<any>(`/api/v1/users/${id}`);
+    return this.http.delete<any>(`${this.API}/api/v1/users/${id}`);
   }
 
   getUser(id:any): Observable<any>{
-    return this.http.get<any>(`/api/v1/users/${id}`);
+    return this.http.get<any>(`${this.API}/api/v1/users/${id}`);
   }
 
   editUser(id:any, user: any): Observable<any>{
-    return this.http.patch<any>(`/api/v1/users/${id}`, user);
+    return this.http.patch<any>(`${this.API}/api/v1/users/${id}`, user);
   }
 
 }
