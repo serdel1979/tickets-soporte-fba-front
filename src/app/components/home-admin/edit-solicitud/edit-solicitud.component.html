@@ -3,10 +3,10 @@
     <div class="card-header">
         Usuario
         <div *ngIf="!solicitud; else formulario" class="alert alert-info">
-            Esperá!!!
+           Cargando!!!
         </div>
         <ng-template #formulario>
-            <div class="container m-5">
+
                 <div class="jumbotron">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Departamento <b> {{
@@ -56,7 +56,7 @@
                     </form>
 
                 </div>
-            </div>
+           
         </ng-template>
     </div>
 </div>

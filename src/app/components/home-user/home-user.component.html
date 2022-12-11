@@ -2,7 +2,7 @@
 <div class="card">
   <div class="card-header">
     Usuario
-    <div class="container m-5">
+    
       <div class="jumbotron">
         <p class="lead">
           {{fechahoy}}
@@ -13,7 +13,7 @@
         <a class="btn btn-primary" (click)="solicitudNueva()" role="button">Generar nuevo</a>
       </div>
       <div *ngIf="!solicitudes; else divTabla" class="alert alert-info">
-        Esperá!!!
+        Cargando!!!
       </div>
       <ng-template #divTabla>
         <div *ngIf="solicitudes.length > 0">
@@ -71,8 +71,6 @@
         </div>
       </ng-template>
 
-
-    </div>
   </div>
 </div>
 
