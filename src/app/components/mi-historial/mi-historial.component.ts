@@ -53,7 +53,7 @@ export class MiHistorialComponent implements OnInit {
       tabla.push([{text: 'Mi HIstorial', colSpan: 7},'','','','','','']);
       tabla.push(['Fecha','Usuario','Descripción','Equipo','Estado','Técnico','Informe']);
       for(let row of data){ 
-        tabla.push([this.convertirFecha(row.createdAt),this.convertirFecha(row.usuario),this.convertirFecha(row.descripcion),this.convertirFecha(row.equipo),this.convertirFecha(row.estado),this.convertRow(row.tecnico),this.convertRow(row.informe)]);
+        tabla.push([this.convertirFecha(row.createdAt),this.convertRow(row.usuario),this.convertRow(row.descripcion),this.convertRow(row.equipo),this.convertRow(row.estado),this.convertRow(row.tecnico),this.convertRow(row.informe)]);
       }
       return tabla;
     }
