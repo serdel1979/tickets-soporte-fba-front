@@ -54,7 +54,7 @@ const routes: Routes = [
     component: MiHistorialComponent, 
     canActivate : [LoginGuard] 
   },
-  { path: '',
+  { path: '**',
     pathMatch: 'full', 
     redirectTo: 'login' 
   }, 
